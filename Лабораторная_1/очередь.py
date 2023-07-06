@@ -10,10 +10,7 @@ from typing import Any
 
 class Queue:
     def __init__(self):
-        """
-        Очередь с помощью python list
-        Очередь реализует FIFO
-        """
+        """Реализации очереди с помощью python list, очередь реализует FIFO."""
         self.stack = []  # TODO инициализировать список
 
     def enqueue(self, elem: Any) -> None:
@@ -55,28 +52,34 @@ class Queue:
         return self.stack[ind]  # TODO реализовать метод peek
 
     def clear(self) -> None:
-        """ Очистка очереди. """
+        """ Очистка очереди."""
         self.stack.clear()  # TODO реализовать метод clear
 
     def __len__(self):
-        """ Количество элементов в очереди. """
+        """ Количество элементов в очереди."""
         return len(self.stack)  # TODO реализовать метод __len__
 
 
 if __name__ == '__main__':
     queue = Queue()
+
     [queue.enqueue(i) for i in range(1, 10, 2)]
     print(queue.stack)
     print()
-#
-#     # for i in range(6):
-#     #     queue.dequeue()
-#     #     print(queue.stack)
-#     #     print()
-#
-#     # print(queue.peek(-5))
-#
-#     # queue.clear()
-#     # print(queue.stack)
-#
-#     print(queue.__len__())
+
+    for _ in range(7):
+        queue.dequeue()
+        print(queue.stack)
+        print()
+
+    # for _ in range(queue.__len__()):
+    #     queue.dequeue()
+    #     print(queue.stack)
+    #     print()
+    #
+    # print(queue.peek(-5))
+    #
+    # queue.clear()
+    # print(queue.stack)
+    #
+    # print(queue.__len__())
