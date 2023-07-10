@@ -9,7 +9,7 @@
 from typing import List
 
 
-def car_paths(n: int, m: int) -> List[List[int]]:
+def car_paths(n: int, m: int) -> List[List[int]]:  # (i, j)
     """
     Просчитать количество маршрутов до каждой клетки с учетом возможных перемещений.
 
@@ -18,9 +18,38 @@ def car_paths(n: int, m: int) -> List[List[int]]:
 
     :return: Новую таблицу с посчитанным количеством маршрутов в каждую клетку
     """
-    ...  # TODO решить задачу с помощью динамического программирования
+    # TODO решить задачу с помощью динамического программирования
+    if (n == 0 and m == 0) or (n == 1 and m == 1):
+        return [[1]]
+
+    a = [[0] * m for _ in range(n)]  # шаблон поля  [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    # print(a)
+
+    # car_paths(4, 3)  (n, m)  (i, j)
+    # Заполняем первую строку.
+    for i in range(n):
+        a[i][0] = 1
+    # print(a)
+
+    # Заполняем первый столбец.
+    for j in range(m):
+        a[0][j] = 1
+    # print(a)
+
+    for i in range(1, n):
+        for j in range(1, m):
+            a[i][j] = a[i-1][j-1] + a[i][j-1] + a[i-1][j]
+
+    # print(a)
+    return a
 
 
 if __name__ == '__main__':
-    paths = car_paths(4, 2)
-    print(paths[-1][-1])  # 7
+    # paths = car_paths(4, 2)
+    # print(paths[-1][-1])  # 7
+
+    print(car_paths(1, 2))
+
+    # a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    #
+    # print(a[1][0])
